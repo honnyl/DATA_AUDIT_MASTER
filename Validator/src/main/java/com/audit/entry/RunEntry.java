@@ -196,10 +196,10 @@ public class RunEntry {
         final CleanseAndValidateRow function = new CleanseAndValidateRow(validateConditionList, taskId, fields, fieldNames,tableName, historyId);
         JavaRDD<Row> map1 = sqlData.javaRDD().map(function);
 
-        add1 = fields.add("invalidate_error", "String");
-        add1 = add1.add("task_id", "String");
-        add1 = add1.add("sequence_key", "String");
-        add1 = add1.add("history_id", "String");
+        add1 = fields.add("invalidate_error".toUpperCase(), "String");
+        add1 = add1.add("task_id".toUpperCase(), "String");
+        add1 = add1.add("sequence_key".toUpperCase(), "String");
+        add1 = add1.add("history_id".toUpperCase(), "String");
 
         dataFrame = spark.createDataFrame(map1, add1);
         //dataFrame.show();

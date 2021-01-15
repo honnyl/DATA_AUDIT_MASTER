@@ -66,7 +66,7 @@ public class LookupValidate implements ValidateRule{
                             if (Double.parseDouble(val.toString()) < Double.parseDouble(subValue2) && Double.parseDouble(val.toString()) > Double.parseDouble(subValue1)) {
 
                             } else {
-                                alterBean.setInvalidateError(fieldName + "字段不在规定的范围内");
+                                alterBean.setInvalidateError(fieldName + "字段不在规定的范围内；");
                             }
                         }
 
