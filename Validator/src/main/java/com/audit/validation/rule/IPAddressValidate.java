@@ -26,7 +26,7 @@ public class IPAddressValidate extends RegexValidate implements ValidateRule{
                 boolean flag = ipAddressValidate.validate(val.toString());
 
                 if (!flag) {
-                    alterBean.setInvalidateError("ip格式不正确；");
+                    alterBean.setInvalidateError(fieldName + "ip格式不正确；");
                 }
             }
         }

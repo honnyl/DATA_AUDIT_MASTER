@@ -25,7 +25,11 @@ public class NotNullValidate implements ValidateRule{
 
         //if (is_not_null) {
             if (val == null){
+
                 alterBean.setInvalidateError(filedName + "字段值不能为空；");
+            } else {
+                if (val.toString().length() == 0)
+                    alterBean.setInvalidateError(filedName + "字段值不能为空；");
             }
         //}
 

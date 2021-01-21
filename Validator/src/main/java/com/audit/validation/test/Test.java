@@ -60,10 +60,176 @@ public class Test {
 
     public static void main(String[] args) {
 
-        HashMap<String, Integer> map = new HashMap<>();
-        Test_2 test_2 = new Test_2(map);
-        test_2.fun();
-        map.get("aa");
+        String string = "{\n" +
+                "  \"taskId\": \"444556211388416000\",\n" +
+                "  \"taskName\": \"MMFULL\",\n" +
+                "  \"taskDescription\": null,\n" +
+                "  \"historyId\": \"450254512905519104\",\n" +
+                "  \"tableName\": \"LHN_LHN\",\n" +
+                "  \"targetUserName\": \"root\",\n" +
+                "  \"targetPassword\": \"123456\",\n" +
+                "  \"targetUrl\": \"jdbc:mysql://172.18.16.207:3306/LHN\",\n" +
+                "  \"targetDriver\": \"com.mysql.jdbc.Driver\",\n" +
+                "  \"targetDatabase\": null,\n" +
+                "  \"targetSchema\": \"LHN\",\n" +
+                "  \"dbType\": \"MySQL\",\n" +
+                "  \"dataSourceProperty\": {\n" +
+                "    \"schema\": null,\n" +
+                "    \"user\": \"root\",\n" +
+                "    \"password\": \"123456\",\n" +
+                "    \"driver\": \"com.mysql.jdbc.Driver\",\n" +
+                "    \"url\": \"jdbc:mysql://172.18.16.207:3306/LHN\"\n" +
+                "  },\n" +
+                "  \"rules\": [\n" +
+                "    {\n" +
+                "      \"fieldName\": \"ID\",\n" +
+                "      \"fieldType\": \"DECIMAL\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": [\n" +
+                "        {\n" +
+                "          \"name\": \"长度\",\n" +
+                "          \"displayName\": null,\n" +
+                "          \"description\": null,\n" +
+                "          \"shortDescription\": null,\n" +
+                "          \"properties\": [\n" +
+                "            {\n" +
+                "              \"name\": \"最大长度\",\n" +
+                "              \"displayName\": null,\n" +
+                "              \"value\": \"4\",\n" +
+                "              \"subValue1\": null,\n" +
+                "              \"subValue2\": null,\n" +
+                "              \"values\": null,\n" +
+                "              \"placeholder\": null,\n" +
+                "              \"type\": null,\n" +
+                "              \"hint\": null,\n" +
+                "              \"objectProperty\": \"maxLength\",\n" +
+                "              \"selectableValues\": [\n" +
+                "                \n" +
+                "              ],\n" +
+                "              \"required\": false,\n" +
+                "              \"group\": null,\n" +
+                "              \"groupOrder\": null,\n" +
+                "              \"layout\": \"column\",\n" +
+                "              \"hidden\": false,\n" +
+                "              \"pattern\": null,\n" +
+                "              \"patternInvalidMessage\": null,\n" +
+                "              \"additionalProperties\": [\n" +
+                "                \n" +
+                "              ]\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"name\": \"最小长度\",\n" +
+                "              \"displayName\": null,\n" +
+                "              \"value\": \"4\",\n" +
+                "              \"subValue1\": null,\n" +
+                "              \"subValue2\": null,\n" +
+                "              \"values\": null,\n" +
+                "              \"placeholder\": null,\n" +
+                "              \"type\": null,\n" +
+                "              \"hint\": null,\n" +
+                "              \"objectProperty\": \"minLength\",\n" +
+                "              \"selectableValues\": [\n" +
+                "                \n" +
+                "              ],\n" +
+                "              \"required\": false,\n" +
+                "              \"group\": null,\n" +
+                "              \"groupOrder\": null,\n" +
+                "              \"layout\": \"column\",\n" +
+                "              \"hidden\": false,\n" +
+                "              \"pattern\": null,\n" +
+                "              \"patternInvalidMessage\": null,\n" +
+                "              \"additionalProperties\": [\n" +
+                "                \n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"objectClassType\": null,\n" +
+                "          \"objectShortClassType\": null,\n" +
+                "          \"propertyValuesDisplayString\": null,\n" +
+                "          \"sequence\": null\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"NAME\",\n" +
+                "      \"fieldType\": \"VARCHAR\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": [\n" +
+                "        {\n" +
+                "          \"name\": \"非空\",\n" +
+                "          \"displayName\": null,\n" +
+                "          \"description\": null,\n" +
+                "          \"shortDescription\": null,\n" +
+                "          \"properties\": [\n" +
+                "            \n" +
+                "          ],\n" +
+                "          \"objectClassType\": null,\n" +
+                "          \"objectShortClassType\": null,\n" +
+                "          \"propertyValuesDisplayString\": null,\n" +
+                "          \"sequence\": null\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"AGE\",\n" +
+                "      \"fieldType\": \"DECIMAL\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": null\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"PHONE\",\n" +
+                "      \"fieldType\": \"VARCHAR\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": [\n" +
+                "        {\n" +
+                "          \"name\": \"电话号码\",\n" +
+                "          \"displayName\": null,\n" +
+                "          \"description\": null,\n" +
+                "          \"shortDescription\": null,\n" +
+                "          \"properties\": [\n" +
+                "            \n" +
+                "          ],\n" +
+                "          \"objectClassType\": null,\n" +
+                "          \"objectShortClassType\": null,\n" +
+                "          \"propertyValuesDisplayString\": null,\n" +
+                "          \"sequence\": null\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"EAMIL\",\n" +
+                "      \"fieldType\": \"VARCHAR\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": null\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"IP\",\n" +
+                "      \"fieldType\": \"VARCHAR\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": null\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"ZIPCODE\",\n" +
+                "      \"fieldType\": \"VARCHAR\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": null\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"SAL\",\n" +
+                "      \"fieldType\": \"DECIMAL\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": null\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"fieldName\": \"CHARSS\",\n" +
+                "      \"fieldType\": \"VARCHAR\",\n" +
+                "      \"standardList\": null,\n" +
+                "      \"validateList\": null\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        System.out.println(string);
     }
 
 }

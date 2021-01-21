@@ -83,6 +83,8 @@ public class CleanseAndValidateRow implements Function<Row, Row> {
 
         for (Tuple2<String,String> fieldTuple : field ) {
 
+            boolean flag = true;
+
             for (Tuple2<String,List<ValidateCondition>> vcl : validateConditionList) {
 
                 for (ValidateCondition vc : vcl._2) {
@@ -111,9 +113,11 @@ public class CleanseAndValidateRow implements Function<Row, Row> {
 
                                         if (StringUtils.isNotEmpty(errorString)) {
 
+                                            flag = false;
+
                                             String sql = "select PASS_NO from "+ tableName + "_FIELD_VALIDATED " +  " where  FIELDNAME = '" + fieldTuple._2 + "'" +
                                                     " and HISTORY_ID = '" + historyId + "'" +
-                                                    " and VALIDATE_TYPE = '" + validateName + "'";
+                                                    " and VALIDATE_TYPE = '" + validateName + "'".toUpperCase();
 
                                             stmt = conn.prepareStatement(sql);
                                             ResultSet countResult = stmt.executeQuery(sql);
@@ -135,14 +139,14 @@ public class CleanseAndValidateRow implements Function<Row, Row> {
                                                     "set PASS_NO = " + num +
                                                     " where  FIELDNAME = '" + fieldTuple._2 + "'" +
                                                     " and HISTORY_ID = '" + historyId + "'" +
-                                                    " and VALIDATE_TYPE = '" + validateName + "'";
+                                                    " and VALIDATE_TYPE = '" + validateName + "'".toUpperCase();
                                             stmt = conn.prepareStatement(sql);
                                             stmt.execute();
                                         } else {
 
                                             String sql = "select PASS from "+ tableName + "_FIELD_VALIDATED " +  " where  FIELDNAME = '" + fieldTuple._2 + "'" +
                                                     " and HISTORY_ID = '" + historyId + "'" +
-                                                    " and VALIDATE_TYPE = '" + validateName + "'";
+                                                    " and VALIDATE_TYPE = '" + validateName + "'".toUpperCase();
                                             stmt = conn.prepareStatement(sql);
                                             ResultSet countResult = stmt.executeQuery(sql);
                                             if (countResult != null) {
@@ -162,7 +166,7 @@ public class CleanseAndValidateRow implements Function<Row, Row> {
                                                     "set PASS = " + num +
                                                     " where  FIELDNAME = '" + fieldTuple._2 + "'" +
                                                     " and HISTORY_ID = '" + historyId + "'" +
-                                                    " and VALIDATE_TYPE = '" + validateName + "'";
+                                                    " and VALIDATE_TYPE = '" + validateName + "'".toUpperCase();
                                             stmt = conn.prepareStatement(sql);
                                             stmt.execute();
                                         }
@@ -207,7 +211,59 @@ public class CleanseAndValidateRow implements Function<Row, Row> {
 
             }
 
+            int num = 0;
+
+            if (flag) {
+
+                String sql = "select PASS from "+ tableName + "_FIELD_SUMMARY " +  " where  FIELDNAME = '" + fieldTuple._2 + "'" +
+                        " and HISTORY_ID = '" + historyId + "'" +
+                        " and TASK_ID = '" + taskId + "'".toUpperCase();
+                stmt = conn.prepareStatement(sql);
+                ResultSet countResult = stmt.executeQuery(sql);
+                if (countResult != null) {
+                    while (countResult.next()) {
+                        Object result = countResult.getObject(1);
+                        num = Integer.parseInt(result.toString());
+                    }
+                }
+                num++;
+
+                sql = "update " + tableName + "_FIELD_SUMMARY " +
+                        "set PASS = " + num +
+                        " where  FIELDNAME = '" + fieldTuple._2 + "'" +
+                        " and HISTORY_ID = '" + historyId + "'" +
+                        " and TASK_ID = '" + taskId + "'".toUpperCase();
+                stmt = conn.prepareStatement(sql);
+                stmt.execute();
+
+
+            } else {
+                String sql = "select PASS_NO from "+ tableName + "_FIELD_SUMMARY " +  " where  FIELDNAME = '" + fieldTuple._2 + "'" +
+                        " and HISTORY_ID = '" + historyId + "'" +
+                        " and TASK_ID = '" + taskId + "'".toUpperCase();
+                stmt = conn.prepareStatement(sql);
+                ResultSet countResult = stmt.executeQuery(sql);
+                if (countResult != null) {
+                    while (countResult.next()) {
+                        Object result = countResult.getObject(1);
+                        num = Integer.parseInt(result.toString());
+                    }
+                }
+                num ++;
+                sql = "update " + tableName + "_FIELD_SUMMARY " +
+                        "set PASS_NO = " + num +
+                        " where  FIELDNAME = '" + fieldTuple._2 + "'" +
+                        " and HISTORY_ID = '" + historyId + "'" +
+                        " and TASK_ID = '" + taskId + "'".toUpperCase();
+                stmt = conn.prepareStatement(sql);
+                stmt.execute();
+
+            }
+
         }
+
+        stmt.close();
+        conn.close();
 
         return row;
     }
